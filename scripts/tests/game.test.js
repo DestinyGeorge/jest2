@@ -1,5 +1,5 @@
 const { expect, describe, beforeAll, beforeEach, afterEach } = require("@jest/globals");
-const { game, newGame, showScore, addTurn, lightsOn } = require("../game");
+const { game, newGame, showScore, addTurn, lightsOn, showTurns } = require("../game");
 
 beforeAll(() => {
     let fs = require("fs");
@@ -24,9 +24,11 @@ describe("game object contains correct keys", () =>{
     test("choices key exists", () =>{
         expect("choices" in game).toBe(true);
     });
-
     test("choices contain correct ids", () =>{
         expect(game.choices).toEqual(["button1", "button2", "button3", "button4"]);
+    });
+    test("turnNumber key exists", () =>{
+        expect("turnNumber" in game).toBe(true);
     });
 });
 
@@ -76,5 +78,10 @@ describe("gameplay works correctly", () => {
         lightsOn(game.currentGame[0]);
         expect(button.classList).toContain("light");
     });
+    test("showTurns should update game.turnNumber", () => {
+        game.turnNumber = 42;
+        showTurns();
+        expect(game.turnNumber).toBe(0);
+    })
 
 });

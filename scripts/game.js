@@ -29,7 +29,7 @@ function newGame() {
 function addTurn(){
     game.playerMoves = [];
     game.currentGame.push(game.choices[(Math.floor(Math.random() * 4))]);
-    // showTurns();
+    showTurns();
 }
 
 function showScore(){
